@@ -1,0 +1,28 @@
+.mainHeader {
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+
+    background-color: rgba(53, 56, 73, 0.95);
+
+    /* height: 3.5em;
+    line-height: 3.5em; */
+    /* Looks like some old CSS - update to flexbox / grid */
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 0 1.25em;
+    width: 100%; /* vw? */
+    z-index: 10000;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    text-decoration: none;
+}

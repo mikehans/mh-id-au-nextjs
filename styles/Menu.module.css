@@ -1,0 +1,28 @@
+.navbar {
+    color: var(--palette-fg);
+    /* margin-left: auto; */
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    padding-right: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+  }
+  
+  .nav-item a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
