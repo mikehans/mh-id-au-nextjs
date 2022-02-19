@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Banner.module.css'
+import styles from './Banner.module.css'
 
 export default function Banner({siteTitle, subTitle}) {
     return (

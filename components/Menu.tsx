@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styles from '../styles/Menu.module.css';
+import styles from './Menu.module.css';
 
 export default function Menu() {
     return (

@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 // import Contact from './Contact'
 // import ContactForm from './ContactForm'
-import styles from "../styles/Footer.module.css";
+import styles from "./Footer.module.css";
 import Link from "next/link";
 import { AppContext } from "../context/AppContext";
 
