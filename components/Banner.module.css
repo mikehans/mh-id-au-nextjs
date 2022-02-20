@@ -1,27 +1,21 @@
 .banner {
-    padding-top: 10em;
-    padding-bottom: 4.75em;
+    padding-top: 5em;
+    padding-bottom: 4em;
     padding-right: 0;
     padding-left: 0;
 
     margin-top: 0;
     margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* This looks out of date. Update to grid / flexbox. Prob also has media queries */
-    width: 55em;
-    /* Come to think of it, all of the above looks like it could be re-done */
 }
 
-.banner-site-title {
+.bannerSiteTitle {
     font-size: 2.25em;
     border-bottom: 2px solid rgb(255, 255, 255, 0.125);
     margin-bottom: 0.8em;
     padding-bottom: 0.4em;
 }
 
-.banner-sub-title {
+.bannerSubTitle {
     font-family: var(--font-family-heading);
     font-size: 1em;
     font-weight: var(--font-weight-heading);

@@ -1,9 +1,47 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic');
+
+:root {
+  /* --container-margin: 2rem;
+  --inner-padding-sides: 2rem; */
+
+  --breakpoint-xlarge: 1680px;
+  --breakpoint-large: 1280px;
+  --breakpoint-medium: 980px;
+  --breakpoint-small: 736px;
+  --breakpoint-xsmall: 480px;
+  --breakpoint-xxsmall: 360px;
+
+  --palette-bg: #2e3141;
+  --palette-fg: #fff;
+  --palette-fg-bold: #fff;
+  --palette-fg-light: rgba(255, 255, 255, 0.35);
+  --palette-border: rgba(255, 255, 255, 0.125);
+  --palette-border-bg: rgba(255, 255, 255, 0.025);
+  --palette-border2: rgba(255, 255, 255, 0.25);
+  --palette-border2-bg: rgba(255, 255, 255, 0.075);
+  --palette-accent: #4c5c96;
+
+  --font--family: 'Source Sans Pro', Helvetica, sans-serif;
+  --font-family-fixed: 'Courier New', monospace;
+  --font-family-heading: Raleway, Helvetica, sans-serif;
+  --font-weight: 300;
+  --font-weight-bold: 600;
+  --font-weight-heading: 200;
+  --font-weight-heading-bold: 700;
+  --font-kern-heading: 0.1em;
+
+  --element-margin: 2em;
+
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font--family);
+  background-color: var(--palette-bg);
+  color: var(--palette-fg);
 }
 
 a {

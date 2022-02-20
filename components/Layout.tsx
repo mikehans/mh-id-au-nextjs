@@ -1,9 +1,14 @@
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import Header from "./Header";
 
-function Layout(props) {
+export interface Props {
+  title: string;
+  subtitle: string;
+}
+
+function Layout(props: PropsWithChildren<Props>) {
   return (
     <div className="flex-wrapper">
       <Header

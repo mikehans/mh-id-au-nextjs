@@ -3,13 +3,20 @@ import Link from "next/link";
 import styles from "./Header.module.css";
 import Menu from "./Menu";
 
-function Header({title}) {
+export interface HeaderProps {
+  title: string;
+  subtitle: string;
+}
+
+function Header({ title, subtitle }: HeaderProps) {
   return (
     <header id="header" className={styles.mainHeader}>
       <div className={styles.container}>
-        <h1>
-          <Link href="/">{title}</Link>
-        </h1>
+        <div>
+          <h1>
+            <Link href="/">{title}</Link>
+          </h1>
+        </div>
         <Menu />
       </div>
     </header>
@@ -17,4 +24,3 @@ function Header({title}) {
 }
 
 export default Header;
-

@@ -3,7 +3,7 @@
     /* margin-left: auto; */
 }
 
-.navbar-nav {
+.navbarNav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -12,17 +12,17 @@
     margin: 0;
   }
   
-  .nav-item {
+  .navItem {
     padding-right: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
   
-  .nav-item a {
+  .navItem a {
     text-decoration: none;
   }
   
-  .nav-item a:hover {
+  .navItem a:hover {
     text-decoration: underline;
     cursor: pointer;
   }
