@@ -4,7 +4,7 @@ import styles from './ContentSectionList.module.css'
 
 export default function ContentSectionList() {
     return (
-        <section className={styles.contentSectionList}>
+        <section className="mt-1">
             <ContentSection 
                 styleNumber="1"
                 heading="Hi I'm Mike"

@@ -21,9 +21,7 @@ function Layout(props: PropsWithChildren<Props>) {
         subTitle={props.subtitle || `Subtitle`}
       />
 
-      <section className="main container">
-        <main className="content">{props.children}</main>
-      </section>
+      <main className="content container mx-auto w-full">{props.children}</main>
       <Footer />
     </div>
   );
