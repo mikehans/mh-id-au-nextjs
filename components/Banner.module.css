@@ -1,5 +1,8 @@
 .banner {
-    /* @apply py-0 pt-5 pb-4 px-0; */
+    @apply container py-8 pt-24 mx-auto;
+}
+
+/* .banner {
     padding-top: 5em;
     padding-bottom: 4em;
     padding-right: 0;
@@ -21,4 +24,4 @@
     font-size: 1em;
     font-weight: var(--font-weight-heading);
     text-transform: uppercase;
-}
+} */

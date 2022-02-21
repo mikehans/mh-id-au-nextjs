@@ -4,9 +4,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    container: {
-      'max-width': '75vw'
-    },
+
     extend: {
       colors: {
         primary: "ff4800"

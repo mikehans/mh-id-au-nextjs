@@ -1,9 +1,10 @@
 import React from 'react'
-// import styles from './Banner.module.css'
+import styles from './Banner.module.css'
 
 export default function Banner({siteTitle, subTitle}) {
     return (
-        <section className="container mx-auto pt-24">
+        // <section className="container mx-auto pt-24">
+        <section className={styles.banner}>
             {/* <div className="logo">
                 <span className="icon fa-gem"></span>
             </div> */}
