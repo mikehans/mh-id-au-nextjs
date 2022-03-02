@@ -1,9 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import dotenv from "dotenv";
+import { markdownToHtml } from "../components/utils/markdownToHtml";
+import parse from 'html-react-parser'
 
-function AboutMePage() {
+function AboutMePage({ data }) {
+  const [pageContent, setPageContent] = useState('');
+
+  console.log('data :>> ', data);
+
+  useEffect(() => {
+    markdownToHtml(data.pageContent.content).then(response => setPageContent(response.value));
+  }, [data.pageContent.content]);
+
   return (
-    <div>About Me</div>
-  )
+    <>
+      {parse(pageContent)}
+    </>
+  );
 }
 
-export default AboutMePage
+export default AboutMePage;
+
+export async function getStaticProps(context) {
+  dotenv.config();
+
+  const aboutPageUrl = `${process.env.API_URL}/about-me`;
+
+  const response = await fetch(aboutPageUrl);
+
+  console.log("response :>> ", response);
+
+  return {
+    props: {
+      data: await response.json(),
+    },
+  };
+}
