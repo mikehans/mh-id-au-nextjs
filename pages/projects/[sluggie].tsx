@@ -2,9 +2,13 @@ import React from 'react'
 import dotenv from 'dotenv'
 
 
-function ProjectPage() {
+function ProjectPage({project}) {
+  console.log('project :>> ', project);
   return (
-    <div> ProjectPage</div>
+    <>
+    <h2>{project.title}</h2>
+    <p>{project.description}</p>
+    </>
   )
 }
 
@@ -32,9 +36,10 @@ export async function getStaticProps({params: {sluggie}}){
 
   const url = `${process.env.API_URL}/projects/${sluggie}`;
   const res = await fetch(url);
-  const post = await res.json()
+  const project = await res.json();
+  console.log('project :>> ', project);
 
   return {
-    props: {post}
+    props: {project}
   }
 }
