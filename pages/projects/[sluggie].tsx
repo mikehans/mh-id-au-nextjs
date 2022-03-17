@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 
 
 function ProjectPage({project}) {
-  console.log('project :>> ', project);
   return (
     <>
     <h2>{project.title}</h2>
@@ -37,7 +36,6 @@ export async function getStaticProps({params: {sluggie}}){
   const url = `${process.env.API_URL}/projects/${sluggie}`;
   const res = await fetch(url);
   const project = await res.json();
-  console.log('project :>> ', project);
 
   return {
     props: {project}
