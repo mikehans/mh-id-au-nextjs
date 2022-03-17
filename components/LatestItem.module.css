@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border: 2px solid var(--palette-border);
+  border-radius: 0.5rem;
+  width: 200px;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-variant-caps: small-caps;
+}
+
+.date {
+  font-size: 0.75rem;
+}
+
+.description {
+  font-size: 1rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

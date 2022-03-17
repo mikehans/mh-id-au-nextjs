@@ -1,0 +1,13 @@
+.cardList {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cardListItem {
+    margin-right: 1rem;
+}
+
+.cardListItem:last-child {
+    margin-right: 0;
+}
