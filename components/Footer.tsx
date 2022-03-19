@@ -41,13 +41,13 @@ export default function Footer() {
           </iframe> */}
           <ul className={styles.contactList}>
             <li className={styles.contactListTwitter}>
-              <FontAwesomeIcon icon={faTwitter} size="xl" /> <Link href={twitterUrl}>{twitterUrl}</Link>
+              <FontAwesomeIcon icon={faTwitter} className={styles.contactListIcon} /> <Link href={twitterUrl}>{twitterUrl}</Link>
             </li>
             <li className={styles.contactListLinkedIn}>
-            <FontAwesomeIcon icon={faLinkedin} size="xl" /> <Link href={linkedinUrl}>{linkedinUrl}</Link>
+            <FontAwesomeIcon icon={faLinkedin} className={styles.contactListIcon} /> <Link href={linkedinUrl}>{linkedinUrl}</Link>
             </li>
             <li className={styles.contactListGithub}>
-            <FontAwesomeIcon icon={faGithub} size="xl"  /> <Link href={githubUrl}>{githubUrl}</Link>
+            <FontAwesomeIcon icon={faGithub} className={styles.contactListIcon}  /> <Link href={githubUrl}>{githubUrl}</Link>
             </li>
           </ul>
           {/* <Contact {...props} /> */}© {new Date().getFullYear()}, Mike

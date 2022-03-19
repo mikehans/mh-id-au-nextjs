@@ -33,3 +33,9 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.contactListIcon {
+    padding-right: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+}
