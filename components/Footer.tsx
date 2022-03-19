@@ -1,6 +1,4 @@
 import React, {useContext} from "react";
-// import Contact from './Contact'
-// import ContactForm from './ContactForm'
 import styles from "./Footer.module.css";
 import Link from "next/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -24,7 +22,7 @@ export default function Footer() {
       <div className={`${styles.mainFooterContainer} container`}>
         <h2>Get in touch</h2>
         <p>
-          I'm always interested in hearing from you. You can get in touch
+          I&apos;m always interested in hearing from you. You can get in touch
           through one of the channels listed or use the contact form here.
         </p>
         <div className={styles.mainFooterContacts}>

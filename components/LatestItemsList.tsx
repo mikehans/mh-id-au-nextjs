@@ -8,7 +8,7 @@ function LatestItemsList({list, path}: {list: any, path: string}) {
     <section>
         <ul className={styles.cardList}>
         {
-            list.map((item, idx) => (
+            list.map((item: any, idx: any) => (
                 <LatestItem key={idx} {...item} path={path} />
             ))
         }
