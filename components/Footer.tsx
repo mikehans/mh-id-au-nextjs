@@ -3,6 +3,8 @@ import React, {useContext} from "react";
 // import ContactForm from './ContactForm'
 import styles from "./Footer.module.css";
 import Link from "next/link";
+import {FontAwesomeIcon, FortAwesomeIcon} from "@fortawesome/react-fontawesome"
+import { faTwitter, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { AppContext } from "../context/AppContext";
 
 export default function Footer() {
@@ -39,13 +41,13 @@ export default function Footer() {
           </iframe> */}
           <ul className={styles.contactList}>
             <li className={styles.contactListTwitter}>
-              <Link href={twitterUrl}>{twitterUrl}</Link>
+              <FontAwesomeIcon icon={faTwitter} size="xl" /> <Link href={twitterUrl}>{twitterUrl}</Link>
             </li>
             <li className={styles.contactListLinkedIn}>
-              <Link href={linkedinUrl}>{linkedinUrl}</Link>
+            <FontAwesomeIcon icon={faLinkedin} size="xl" /> <Link href={linkedinUrl}>{linkedinUrl}</Link>
             </li>
             <li className={styles.contactListGithub}>
-              <Link href={githubUrl}>{githubUrl}</Link>
+            <FontAwesomeIcon icon={faGithub} size="xl"  /> <Link href={githubUrl}>{githubUrl}</Link>
             </li>
           </ul>
           {/* <Contact {...props} /> */}© {new Date().getFullYear()}, Mike

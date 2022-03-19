@@ -68,6 +68,10 @@ a {
   margin-right: auto;
 }
 
+.main {
+  min-height: 35vh;
+}
+
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;

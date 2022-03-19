@@ -3,21 +3,33 @@
     color: white;
 }
 
-.mainFooter-container {
-    padding-top: 5em;
+.mainFooterContainer {
+    padding-top: 3em;
     padding-bottom: 3em;
     padding-right: 0;
     padding-left: 0;
     margin-right: auto;
     margin-left: auto;
-    width: 55em;
 
     display: flex;
     flex-direction: column;
-
-
 }
 
 .mainFooter-contacts {
     display: flex;
+    margin-bottom: 2rem;
+}
+
+.contactList {
+    list-style-type: none;
+    margin-bottom: 3rem;
+}
+
+.contactList > li {
+    margin-top: 1rem;
+}
+
+.contactList > li > a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
