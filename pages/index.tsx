@@ -4,7 +4,7 @@ import AboutMe from "../components/AboutMe"
 import LatestItems from "../components/LatestItems";
 import dotenv from "dotenv"
 
-const Home: NextPage = (props) => {
+const Home: NextPage = (props: any) => {
   const homePageContent = props.homePage;
   const postsList = props.posts;
   const projectsList = props.projects;
@@ -20,7 +20,7 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-export async function getStaticProps(context){
+export async function getStaticProps(){
   // console.log("getStaticProps")
   dotenv.config();
 

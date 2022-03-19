@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import LatestItems from "../../components/LatestItems";
 
 
-function BlogPage({data}) {
+function BlogPage({data}: {data:any}) {
   console.log('data :>> ', data);
   return (
     <>
@@ -15,7 +15,7 @@ function BlogPage({data}) {
 
 export default BlogPage
 
-export async function getStaticProps(context){
+export async function getStaticProps(){
   dotenv.config();
 
   const postsUrl = `${process.env.API_URL}/posts?_sort=published_at:DESC`;

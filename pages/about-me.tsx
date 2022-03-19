@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { markdownToHtml } from "../components/utils/markdownToHtml";
 import parse from 'html-react-parser'
 
-function AboutMePage({ data }) {
+function AboutMePage({ data }: {data: any}) {
   const [pageContent, setPageContent] = useState('');
 
   console.log('data :>> ', data);
@@ -21,7 +21,7 @@ function AboutMePage({ data }) {
 
 export default AboutMePage;
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   dotenv.config();
 
   const aboutPageUrl = `${process.env.API_URL}/about-me`;

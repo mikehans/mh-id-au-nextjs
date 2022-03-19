@@ -1,4 +1,4 @@
-export default function dateFormatter(theDate:string, format) {
+export default function dateFormatter(theDate:string, format:string) {
     const months = {
         short: [
             'Jan', 'Feb', 'Mar', 'Apr',

@@ -2,7 +2,7 @@ import React from 'react'
 import dotenv from 'dotenv'
 import LatestItems from "../../components/LatestItems";
 
-function ProjectsPage({data}) {
+function ProjectsPage({data}: {data: any}) {
   return (
     <>
     <div>Projects</div>

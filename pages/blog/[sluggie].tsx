@@ -1,8 +1,7 @@
 import React from 'react'
-import { getStaticProps } from '../about-me'
 import dotenv from 'dotenv'
 
-function BlogPostPage({post}) {
+function BlogPostPage({post}: {post:any}) {
   console.log('post :>> ', post);
   return (
     <h2>{post.title}</h2>
@@ -18,7 +17,7 @@ export async function getStaticPaths() {
   const res = await fetch(url);
   const posts = await res.json();
   
-  const paths = posts.map(p => ({
+  const paths = posts.map((p:any) => ({
     params: {sluggie: p.sluggie}
   }));
 
@@ -28,8 +27,10 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params: {sluggie}}){
+export async function getStaticProps({params}: {params: any}){
   dotenv.config();
+
+  const sluggie: string = params.sluggie;
 
   const url = `${process.env.API_URL}/posts/${sluggie}`;
   const res = await fetch(url);

@@ -2,7 +2,7 @@ import React from 'react'
 import dotenv from 'dotenv'
 
 
-function ProjectPage({project}) {
+function ProjectPage({project}: {project: any}) {
   return (
     <>
     <h2>{project.title}</h2>
@@ -30,8 +30,10 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({params: {sluggie}}){
+export async function getStaticProps({params}: {params: any}){
   dotenv.config();
+
+  const sluggie: string = params.sluggie;
 
   const url = `${process.env.API_URL}/projects/${sluggie}`;
   const res = await fetch(url);
