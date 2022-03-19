@@ -4,6 +4,15 @@ import dateFormatter from "./utils/dateFormatter";
 import styles from "./LatestItem.module.css";
 import Image from "next/image";
 
+interface LatestItemProps {
+  published_at: string;
+  title: string;
+  description: string;
+  sluggie: string;
+  path: string;
+  image: any;
+}
+
 function LatestItem({
   published_at,
   title,
@@ -11,7 +20,7 @@ function LatestItem({
   sluggie,
   path,
   image,
-}) {
+}: LatestItemProps) {
   const buildUrl = (p: string, s: string) => {
     return `/${path}/${s}`;
   };

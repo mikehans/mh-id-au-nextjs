@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import styles from './ContentSection.module.css';
 
-export default function ContentSection(props) {
+export default function ContentSection(props:any) {
     let { styleNumber, altFacing = false, heading = 'Test me', intro = 'Lorem ipsum forceum blah blah blah', link = '#' } = props;
 
     let styleString = '';

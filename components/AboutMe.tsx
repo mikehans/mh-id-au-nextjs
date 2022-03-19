@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { markdownToHtml } from "./utils/markdownToHtml";
 import parse from 'html-react-parser'
 
-function AboutMe(props) {
+function AboutMe(props:any) {
   const [bodyContent, setBodyContent] = useState("");
 
   useEffect(() => {

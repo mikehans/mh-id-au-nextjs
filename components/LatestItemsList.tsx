@@ -2,7 +2,7 @@ import React from 'react'
 import LatestItem from "./LatestItem"
 import styles from "./LatestItemsList.module.css"
 
-function LatestItemsList({list, path}) {
+function LatestItemsList({list, path}: {list: any, path: string}) {
   console.log('list :>> ', list);
   return (
     <section>

@@ -3,7 +3,7 @@ import React, {useContext} from "react";
 // import ContactForm from './ContactForm'
 import styles from "./Footer.module.css";
 import Link from "next/link";
-import {FontAwesomeIcon, FortAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faTwitter, faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { AppContext } from "../context/AppContext";
 

@@ -1,7 +1,13 @@
 import React from "react";
 import LatestItemsList from "./LatestItemsList";
 
-function LatestItems({title, list, path}) {
+interface LatestItemsProps {
+  title: string;
+  list: any;
+  path: string;
+}
+
+function LatestItems({title, list, path}: LatestItemsProps) {
   return (
     <section>
       <h2>{title}</h2>
