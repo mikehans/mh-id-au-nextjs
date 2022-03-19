@@ -9,7 +9,7 @@ function LatestItemsList({list, path}) {
         <ul className={styles.cardList}>
         {
             list.map((item, idx) => (
-                <li key={idx} className={styles.cardListItem}><LatestItem {...item} path={path} /></li>
+                <LatestItem key={idx} {...item} path={path} />
             ))
         }
         </ul>

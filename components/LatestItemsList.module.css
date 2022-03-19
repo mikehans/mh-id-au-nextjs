@@ -1,13 +1,7 @@
 .cardList {
     list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.cardListItem {
-    margin-right: 1rem;
-}
-
-.cardListItem:last-child {
-    margin-right: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    justify-content: stretch;
 }

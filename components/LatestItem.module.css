@@ -4,8 +4,6 @@
   padding: 1em;
   border: 2px solid var(--palette-border);
   border-radius: 0.5rem;
-  width: 200px;
-  margin-bottom: 1rem;
 }
 
 .heading {
