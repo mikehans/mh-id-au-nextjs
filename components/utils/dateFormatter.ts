@@ -1,5 +1,5 @@
 export default function dateFormatter(theDate:string, format:string) {
-    const months = {
+    const months: {[index: string]: any} = {
         short: [
             'Jan', 'Feb', 'Mar', 'Apr',
             'May', 'Jun', 'Jul', 'Aug',
