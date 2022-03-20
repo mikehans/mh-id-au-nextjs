@@ -20,7 +20,7 @@ export async function getStaticPaths() {
   const res = await fetch(url);
   const posts = await res.json();
   
-  const paths = posts.map(p => ({
+  const paths = posts.map((p: any) => ({
     params: {sluggie: p.sluggie}
   }));
 
