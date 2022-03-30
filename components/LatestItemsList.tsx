@@ -3,7 +3,7 @@ import LatestItem from "./LatestItem"
 import styles from "./LatestItemsList.module.css"
 
 function LatestItemsList({list, path}: {list: any, path: string}) {
-  console.log('list :>> ', list);
+  // console.log('list :>> ', list);
   return (
     <section>
         <ul className={styles.cardList}>

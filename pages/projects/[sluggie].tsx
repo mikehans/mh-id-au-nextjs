@@ -1,5 +1,6 @@
 import React from 'react'
 import dotenv from 'dotenv'
+import authenticatedGetter from '../../components/utils/authenticatedGetter';
 
 
 function ProjectPage({project}: {project: any}) {
@@ -17,8 +18,10 @@ export async function getStaticPaths() {
   dotenv.config();
 
   const url = `${process.env.API_URL}/projects`;
-  const res = await fetch(url);
-  const posts = await res.json();
+  const posts = await authenticatedGetter(url);
+
+  // const res = await fetch(url);
+  // const posts = await res.json();
   
   const paths = posts.map((p: any) => ({
     params: {sluggie: p.sluggie}
@@ -36,8 +39,7 @@ export async function getStaticProps({params}: {params: any}){
   const sluggie: string = params.sluggie;
 
   const url = `${process.env.API_URL}/projects/${sluggie}`;
-  const res = await fetch(url);
-  const project = await res.json();
+  const project = await authenticatedGetter(url);
 
   return {
     props: {project}

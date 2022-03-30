@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import AboutMe from "../components/AboutMe"
 import LatestItems from "../components/LatestItems";
+import authenticatedGetter from '../components/utils/authenticatedGetter';
 import dotenv from "dotenv"
 
 const Home: NextPage = (props: any) => {
@@ -30,17 +31,17 @@ export async function getStaticProps(){
   const projectsUrl = `${process.env.API_URL}/projects?_sort=published_at:DESC&_limit=2`;
   const homePageUrl = `${process.env.API_URL}/home-page`;
   
-  const postsResponse = await fetch(postsUrl);
-  const projectsResponse = await fetch(projectsUrl);
-  const homePageResponse = await fetch(homePageUrl);
+  const postsData = await authenticatedGetter(postsUrl);
+  const projectsData = await authenticatedGetter(projectsUrl);
+  const homePageData = await authenticatedGetter(homePageUrl);
 
   // console.log('postsResponse :>> ', postsResponse);
 
   return {
     props: {
-      homePage: await homePageResponse.json(),
-      posts: await postsResponse.json(),
-      projects: await projectsResponse.json()
+      homePage: homePageData,
+      posts: postsData,
+      projects: projectsData
     },
     revalidate: 20
   }
