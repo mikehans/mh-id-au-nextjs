@@ -1,17 +1,16 @@
-import React from 'react'
-import dotenv from 'dotenv'
+import React from "react";
+import dotenv from "dotenv";
 
-
-function ProjectPage({project}: {project: any}) {
+function ProjectPage({ project }: { project: any }) {
   return (
-    <>
-    <h2>{project.title}</h2>
-    <p>{project.description}</p>
-    </>
-  )
+    <article>
+      <h2>{project.title}</h2>
+      <p>{project.description}</p>
+    </article>
+  );
 }
 
-export default ProjectPage
+export default ProjectPage;
 
 export async function getStaticPaths() {
   dotenv.config();
@@ -19,18 +18,18 @@ export async function getStaticPaths() {
   const url = `${process.env.API_URL}/projects`;
   const res = await fetch(url);
   const posts = await res.json();
-  
+
   const paths = posts.map((p: any) => ({
-    params: {sluggie: p.sluggie}
+    params: { sluggie: p.sluggie },
   }));
 
   return {
     paths,
-    fallback: false
-  }
+    fallback: false,
+  };
 }
 
-export async function getStaticProps({params}: {params: any}){
+export async function getStaticProps({ params }: { params: any }) {
   dotenv.config();
 
   const sluggie: string = params.sluggie;
@@ -40,6 +39,6 @@ export async function getStaticProps({params}: {params: any}){
   const project = await res.json();
 
   return {
-    props: {project}
-  }
+    props: { project },
+  };
 }

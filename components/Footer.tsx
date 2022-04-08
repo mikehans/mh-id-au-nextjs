@@ -7,7 +7,7 @@ import { AppContext } from "../context/AppContext";
 
 export default function Footer() {
   const site = useContext(AppContext);
-  console.log('site :>> ', site);
+  // console.log('site :>> ', site);
 
   const makeHttpsUrl = (url: string) => {
     return `https://${url}`;
