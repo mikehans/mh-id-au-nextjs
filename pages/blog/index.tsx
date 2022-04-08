@@ -7,7 +7,8 @@ function BlogPage({data}: {data:any}) {
   console.log('data :>> ', data);
   return (
     <>
-      <h1>Hello</h1>
+      <h2>Tech Blog</h2>
+      <p>I blog about various topics relevant to web development and other software topics in general.</p>
       <LatestItems title="My posts" list={data} path="blog" />
     </>
   )

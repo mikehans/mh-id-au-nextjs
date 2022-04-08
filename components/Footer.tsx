@@ -23,7 +23,7 @@ export default function Footer() {
         <h2>Get in touch</h2>
         <p>
           I&apos;m always interested in hearing from you. You can get in touch
-          through one of the channels listed or use the contact form here.
+          through one of the channels listed below or check out my LinkedIn profile, Github or Twitter.
         </p>
         <div className={styles.mainFooterContacts}>
           {/* <ContactForm /> */}
