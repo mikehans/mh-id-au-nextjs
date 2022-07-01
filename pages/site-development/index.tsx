@@ -6,14 +6,17 @@ function SiteDevelopmentPage({ logs }: {logs: any}) {
   return (
     <>
       <h2>Site Development Logs</h2>
+
       {logs.map((log: any) => {
-        <section>
-          <h3>{log.title}</h3>
-          <div>Published: {dateFormatter(log.published_at, "long")}</div>
-          <div>{log.content}</div>
-        </section>;
+        return (
+          <article key={log.id}>
+            <h3>{log.title}</h3>
+            <p>{log.published_at}</p>
+            <p>{log.content}</p>
+          </article>
+        )
       })}
-      ;
+      
     </>
   );
 }
