@@ -30,6 +30,10 @@
   --font-weight-heading: 200;
   --font-weight-heading-bold: 700;
   --font-kern-heading: 0.1em;
+  --line-height: 1.5;
+  --base-font-size: 18px;
+  --letter-spacing: 0.02em;
+
 
   --element-margin: 2em;
 
@@ -42,6 +46,9 @@ body {
   font-family: var(--font--family);
   background-color: var(--palette-bg);
   color: var(--palette-fg);
+  font-size: var(--base-font-size);
+  line-height: var(--line-height);
+  letter-spacing: var(--letter-spacing);
 }
 
 h3{
