@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import dotenv from "dotenv";
 import { markdownToHtml } from "../components/utils/markdownToHtml";
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
+import fs from 'fs';
+import matter from 'gray-matter';
 
 function AboutMePage({ data }: {data: any}) {
   const [pageContent, setPageContent] = useState('');
@@ -9,13 +11,13 @@ function AboutMePage({ data }: {data: any}) {
   console.log('data :>> ', data);
 
   useEffect(() => {
-    markdownToHtml(data.pageContent.content).then(response => setPageContent(response.value));
-  }, [data.pageContent.content]);
+    setPageContent(markdownToHtml(data));
+  }, [data]);
 
   return (
-    <>
+    <article>
       {parse(pageContent)}
-    </>
+    </article>
   );
 }
 
@@ -24,16 +26,11 @@ export default AboutMePage;
 export async function getStaticProps() {
   dotenv.config();
 
-  const aboutPageUrl = `${process.env.API_URL}/about-me`;
-
-  const response = await fetch(aboutPageUrl);
-
-  console.log("response :>> ", response);
+  const {content} = matter(fs.readFileSync('./data/about-me-page.md'));
 
   return {
     props: {
-      data: await response.json(),
-    },
-    revalidate: 20
+      data: content
+    }
   };
 }

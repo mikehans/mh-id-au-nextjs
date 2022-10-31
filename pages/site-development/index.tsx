@@ -1,8 +1,14 @@
 import React from "react";
 import dotenv from "dotenv";
 import dateFormatter from "../../components/utils/dateFormatter";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { markdownToHtml } from "../../components/utils/markdownToHtml";
+import parse from "html-react-parser";
 
-function SiteDevelopmentPage({ logs }: { logs: any }) {
+function SiteDevelopmentPage(props) {
+  console.log("props :>> ", props);
   const formatDate = (theDate: string) => {
     const options = {
       year: "numeric",
@@ -17,12 +23,12 @@ function SiteDevelopmentPage({ logs }: { logs: any }) {
     <>
       <h2>Site Development Logs</h2>
 
-      {logs.map((log: any) => {
+      {props.fileData.map((log: any, index: number) => {
         return (
-          <article key={log.id}>
-            <h3>{log.title}</h3>
-            <p>{formatDate(log.published_at)}</p>
-            <p>{log.content}</p>
+          <article key={index}>
+            <h3>{log.data.title}</h3>
+            <p>{formatDate(log.data.date)}</p>
+            <p>{parse(markdownToHtml(log.content))}</p>
           </article>
         );
       })}
@@ -35,14 +41,17 @@ export default SiteDevelopmentPage;
 export async function getStaticProps() {
   dotenv.config();
 
-  const url = `${process.env.API_URL}/dev-logs`;
-  const res = await fetch(url);
-  const logs = await res.json();
+  const files = fs.readdirSync("./data/site-dev-log");
+
+  const fileData = files.map((file) => {
+    const f = fs.readFileSync(path.join("./data/site-dev-log", file));
+    const { data, content } = matter(f);
+    return { data, content };
+  });
 
   return {
     props: {
-      logs,
-    },
-    revalidate: 60,
+      fileData
+    }
   };
 }
