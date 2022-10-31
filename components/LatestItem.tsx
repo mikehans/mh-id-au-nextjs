@@ -5,19 +5,19 @@ import styles from "./LatestItem.module.css";
 import Image from "next/image";
 
 interface LatestItemProps {
-  published_at: string;
+  date: string;
   title: string;
-  description: string;
-  sluggie: string;
+  description?: string;
+  slug: string;
   path: string;
-  image: any;
+  image?: any;
 }
 
 function LatestItem({
-  published_at,
+  date,
   title,
   description,
-  sluggie,
+  slug,
   path,
   image,
 }: LatestItemProps) {
@@ -28,9 +28,9 @@ function LatestItem({
   return (
     <li className={styles.card}>
       <h3 className={styles.heading}>{title}</h3>
-      <p className={styles.date}>{dateFormatter(published_at, "short")}</p>
+      <p className={styles.date}>{dateFormatter(date, "short")}</p>
       <p className={styles.description}>{description}</p>
-      <Link href={buildUrl(path, sluggie)}>
+      <Link href={buildUrl(path, slug)}>
         <a className={styles.link}>Read more</a>
       </Link>
       {/* {image && image.length > 0 ? <p><Image src={image[0].url} width={200} height={100} alt={image[0].alternativeText} className={styles.image} /></p>: ""} */}
