@@ -23,7 +23,7 @@ function BlogPostPage(props) {
     <article>
       <h2>{props.frontmatter.title}</h2>
       <div>Published: {dateFormatter(props.frontmatter.date, "long")}</div>
-      <div>{parse(bodyContent)}</div>
+      <div className='md-article'>{parse(bodyContent)}</div>
     </article>
   );
 }
