@@ -8,7 +8,7 @@ import matter from 'gray-matter';
 function AboutMePage({ data }: {data: any}) {
   const [pageContent, setPageContent] = useState('');
 
-  console.log('data :>> ', data);
+  // console.log('data :>> ', data);
 
   useEffect(() => {
     setPageContent(markdownToHtml(data));

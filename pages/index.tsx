@@ -60,29 +60,3 @@ export async function getStaticProps() {
     }
   };
 }
-
-// export async function getStaticProps(){
-//   // console.log("getStaticProps")
-//   dotenv.config();
-
-//   // FIXME: Note that these are still 3 resources
-//   const postsUrl = `${process.env.API_URL}/posts?_sort=published_at:DESC&_limit=3`;
-//   // console.log('postsUrl :>> ',postsUrl);
-//   const projectsUrl = `${process.env.API_URL}/projects?_sort=published_at:DESC&_limit=2`;
-//   const homePageUrl = `${process.env.API_URL}/home-page`;
-
-//   const postsResponse = await fetch(postsUrl);
-//   const projectsResponse = await fetch(projectsUrl);
-//   const homePageResponse = await fetch(homePageUrl);
-
-//   // console.log('postsResponse :>> ', postsResponse);
-
-//   return {
-//     props: {
-//       homePage: await homePageResponse.json(),
-//       posts: await postsResponse.json(),
-//       projects: await projectsResponse.json()
-//     },
-//     revalidate: 20
-//   }
-// }

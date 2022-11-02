@@ -11,11 +11,9 @@ import path from 'path';
 function BlogPostPage(props) {
   const [bodyContent, setBodyContent] = useState("");
   const [frontMatter, setFrontMatter] = useState({});
-
-  console.log("post :>> ", props);
+  // console.log("post :>> ", props);
 
   useEffect(() => {
-    // setFrontMatter(parseFrontMatter(post.content));
     setBodyContent(markdownToHtml(props.content));
   }, [props.content]);
 
@@ -59,6 +57,5 @@ export async function getStaticProps({params: {slug}}){
 
   return {
     props: {frontmatter, content}
-    // props: {}
   }
 }
