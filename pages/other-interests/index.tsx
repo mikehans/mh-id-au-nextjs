@@ -5,12 +5,12 @@ import dotenv from 'dotenv';
 import { markdownToHtml } from "../../components/utils/markdownToHtml";
 import parse from 'html-react-parser';
 
-function OtherInterestsPage({data}) {
+function OtherInterestsPage({markdownString}: {markdownString: string}) {
   const [pageContent, setPageContent] = useState('');
 
   useEffect(() => {
-    setPageContent(markdownToHtml(data));
-  }, [data]);
+    setPageContent(markdownToHtml(markdownString));
+  }, [markdownString]);
 
   return (
     <article>
@@ -28,7 +28,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      data: content
+      markdownString: content
     }
   };
 }

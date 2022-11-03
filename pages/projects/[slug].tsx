@@ -5,11 +5,12 @@ import path from "path";
 import matter from "gray-matter";
 import { markdownToHtml } from "../../components/utils/markdownToHtml";
 import parse from "html-react-parser";
+import { ProjectFrontmatter, ProjectProps } from "./ProjectInterfaces";
 
-function ProjectPage(props) {
+function ProjectPage(props: ProjectProps) {
   const [content, setContent] = useState("");
 
-  console.log("props :>> ", props);
+  // console.log("props :>> ", props);
 
   useEffect(() => {
     setContent(markdownToHtml(props.content));
@@ -46,16 +47,26 @@ export async function getStaticPaths() {
   };
 }
 
+interface GetStaticPropsParams{
+  params: {
+    slug: string;
+  };
+}
+interface GetStaticPropsReturnType {
+  props: ProjectProps;
+}
+
 // I can't detach the markdown filename from the slug param
-export async function getStaticProps({ params: { slug } }) {
-  console.log("slug :>> ", slug);
+export async function getStaticProps(props: GetStaticPropsParams): Promise<GetStaticPropsReturnType> {
+  // console.log("slug :>> ", slug);
 
   const markdownWithMetadata = fs.readFileSync(
-    path.join("./data/projects", slug + ".md"),
+    path.join("./data/projects", props.params.slug + ".md"),
     "utf-8"
   );
-  console.log("markdownWithMetadata :>> ", markdownWithMetadata);
+  // console.log("markdownWithMetadata :>> ", markdownWithMetadata);
 
+  // TODO: The types here and the return type don't align
   const { data: frontmatter, content } = matter(markdownWithMetadata);
 
   return {

@@ -7,8 +7,8 @@ import matter from "gray-matter";
 import { markdownToHtml } from "../../components/utils/markdownToHtml";
 import parse from "html-react-parser";
 
-function SiteDevelopmentPage(props) {
-  console.log("props :>> ", props);
+function SiteDevelopmentPage(props: any) {
+  // console.log("props :>> ", props);
   const formatDate = (theDate: string) => {
     const options = {
       year: "numeric",

@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import AboutMe from "../components/AboutMe";
 import LatestItems from "../components/LatestItems";
@@ -9,6 +9,11 @@ import matter from "gray-matter";
 import { sortByDateDesc } from "../components/utils/sortAlgos";
 import take from "lodash.take";
 
+interface HomePageProps {
+  content: any;
+  frontmatter: any
+}
+
 const Home: NextPage = (props: any) => {
   const homePageContent = props.homePage;
   const postsList = props.latestPosts;
@@ -17,21 +22,34 @@ const Home: NextPage = (props: any) => {
   console.log("props", props);
   return (
     <>
-      <AboutMe title={homePageContent.frontmatter.title} content={homePageContent.content} />
+      <AboutMe
+        title={homePageContent.frontmatter.title}
+        content={homePageContent.content}
+      />
 
-    <LatestItems title="My Latest Posts" list={postsList} path="blog" />
+      <LatestItems title="My Latest Posts" list={postsList} path="blog" />
 
-    <LatestItems title="My Projects" list={projectsList} path="projects"/>
+      <LatestItems title="My Projects" list={projectsList} path="projects" />
     </>
   );
 };
 
 export default Home;
 
-export async function getStaticProps() {
+interface GetStaticPropsReturnType {
+  props:{
+    homePage: any;
+    latestPosts: any;
+    latestProjects: any;
+  }
+}
+
+export async function getStaticProps () : Promise<GetStaticPropsReturnType> {
   dotenv.config();
 
-  const {data: homePageFrontmatter, content: homePageContent} = matter(fs.readFileSync("./data/home-page.md", "utf-8"));
+  const { data: homePageFrontmatter, content: homePageContent } = matter(
+    fs.readFileSync("./data/home-page.md", "utf-8")
+  );
 
   const posts = fs.readdirSync("./data/posts");
 

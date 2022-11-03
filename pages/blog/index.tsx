@@ -4,8 +4,13 @@ import LatestItems from "../../components/LatestItems";
 import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
+import { BlogFrontmatter } from "./BlogInterfaces";
 
-function BlogPage({ data }: { data: any }) {
+export interface BlogPageProps {
+  data: BlogFrontmatter;
+}
+
+function BlogPage({ data }: { data: BlogFrontmatter }) {
   // console.log("data :>> ", data);
   return (
     <>
@@ -26,7 +31,7 @@ export async function getStaticProps() {
 
   const files = fs.readdirSync("./data/posts");
 
-  console.log("files", files);
+  // console.log("files", files);
 
   const fileInfo = files.map((file) => {
     const f = fs.readFileSync(path.join("./data/posts", file));

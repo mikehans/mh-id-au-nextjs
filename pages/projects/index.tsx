@@ -4,6 +4,7 @@ import LatestItems from "../../components/LatestItems";
 import fs from 'fs';
 import path from 'path';
 import matter from "gray-matter";
+import { ProjectFrontmatter } from "./ProjectInterfaces";
 
 function ProjectsPage({data}: {data: any}) {
   return (
@@ -22,8 +23,7 @@ export async function getStaticProps() {
   dotenv.config();
 
   const files = fs.readdirSync("./data/projects");
-
-  console.log("files", files);
+  // console.log("files", files);
 
   const fileInfo = files.map((file) => {
     const f = fs.readFileSync(path.join("./data/projects", file));
