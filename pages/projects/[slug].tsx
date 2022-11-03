@@ -57,7 +57,7 @@ interface GetStaticPropsReturnType {
 }
 
 // I can't detach the markdown filename from the slug param
-export async function getStaticProps(props: GetStaticPropsParams): Promise<GetStaticPropsReturnType> {
+export async function getStaticProps(props: GetStaticPropsParams) {
   // console.log("slug :>> ", slug);
 
   const markdownWithMetadata = fs.readFileSync(
