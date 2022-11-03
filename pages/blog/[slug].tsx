@@ -6,7 +6,7 @@ import parse from "html-react-parser";
 import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
-import { BlogFrontmatter } from "./BlogInterfaces";
+import { BlogFrontmatter } from "../../types/BlogInterfaces";
 
 export interface BlogPostProps {
   frontmatter: BlogFrontmatter;

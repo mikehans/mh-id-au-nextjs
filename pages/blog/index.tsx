@@ -4,7 +4,7 @@ import LatestItems from "../../components/LatestItems";
 import matter from "gray-matter";
 import fs from "fs";
 import path from "path";
-import { BlogFrontmatter } from "./BlogInterfaces";
+import { BlogFrontmatter } from "../../types/BlogInterfaces";
 
 export interface BlogPageProps {
   data: BlogFrontmatter;

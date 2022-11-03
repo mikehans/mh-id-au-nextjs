@@ -5,7 +5,7 @@ import path from "path";
 import matter from "gray-matter";
 import { markdownToHtml } from "../../components/utils/markdownToHtml";
 import parse from "html-react-parser";
-import { ProjectFrontmatter, ProjectProps } from "./ProjectInterfaces";
+import { ProjectFrontmatter, ProjectProps } from "../../types/ProjectInterfaces";
 
 function ProjectPage(props: ProjectProps) {
   const [content, setContent] = useState("");

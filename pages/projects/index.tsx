@@ -4,7 +4,7 @@ import LatestItems from "../../components/LatestItems";
 import fs from 'fs';
 import path from 'path';
 import matter from "gray-matter";
-import { ProjectFrontmatter } from "./ProjectInterfaces";
+import { ProjectFrontmatter } from "../../types/ProjectInterfaces";
 
 function ProjectsPage({data}: {data: any}) {
   return (
