@@ -1,4 +1,4 @@
-import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import AboutMe from "../components/AboutMe";
 import LatestItems from "../components/LatestItems";
@@ -19,7 +19,7 @@ const Home: NextPage = (props: any) => {
   const postsList = props.latestPosts;
   const projectsList = props.latestProjects;
 
-  console.log("props", props);
+  // console.log("props", props);
   return (
     <>
       <AboutMe

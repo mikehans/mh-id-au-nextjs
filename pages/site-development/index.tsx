@@ -10,13 +10,7 @@ import parse from "html-react-parser";
 function SiteDevelopmentPage(props: any) {
   // console.log("props :>> ", props);
   const formatDate = (theDate: string) => {
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    };
-
-    return new Date(theDate).toLocaleDateString(undefined, options);
+    return dateFormatter(theDate, "short");
   };
 
   return (
