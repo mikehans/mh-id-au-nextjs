@@ -5,6 +5,7 @@ import LatestItems from "../components/LatestItems";
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
+import process from 'process';
 import matter from "gray-matter";
 import { sortByDateDesc } from "../components/utils/sortAlgos";
 import take from "lodash.take";
@@ -46,23 +47,26 @@ interface GetStaticPropsReturnType {
 
 export async function getStaticProps () : Promise<GetStaticPropsReturnType> {
   dotenv.config();
+  const homepagePath = path.join(process.env.DATA_PATH as string, process.env.HOME_PAGE as string);
 
   const { data: homePageFrontmatter, content: homePageContent } = matter(
-    fs.readFileSync("./data/home-page.md", "utf-8")
+    fs.readFileSync(homepagePath, "utf-8")
   );
 
-  const posts = fs.readdirSync("./data/posts");
+  const postsPath = path.join(process.env.DATA_PATH as string, process.env.POSTS_PATH as string);
+  const posts = fs.readdirSync(postsPath);
 
   const postFiles = posts.map((post) => {
-    const { data } = matter(fs.readFileSync(path.join("./data/posts/", post)));
+    const { data } = matter(fs.readFileSync(path.join(postsPath, post)));
     return { filename: post, date: data.date, data };
   });
 
-  const projects = fs.readdirSync("./data/projects");
+  const projectsPath = path.join(process.env.DATA_PATH as string, process.env.PROJECTS_PATH as string)
+  const projects = fs.readdirSync(projectsPath);
 
   const projectFiles = projects.map((project) => {
     const { data } = matter(
-      fs.readFileSync(path.join("./data/projects", project))
+      fs.readFileSync(path.join(projectsPath, project))
     );
     return { filename: project, date: data.date, data };
   });

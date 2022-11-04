@@ -28,13 +28,14 @@ export default BlogPage;
 
 export async function getStaticProps() {
   dotenv.config();
+  const postsPath = path.join(process.env.DATA_PATH as string, process.env.POSTS_PATH as string);
 
-  const files = fs.readdirSync("./data/posts");
+  const files = fs.readdirSync(postsPath);
 
   // console.log("files", files);
 
   const fileInfo = files.map((file) => {
-    const f = fs.readFileSync(path.join("./data/posts", file));
+    const f = fs.readFileSync(path.join(postsPath, file));
     const { data, content } = matter(f);
     return { data, content };
   });

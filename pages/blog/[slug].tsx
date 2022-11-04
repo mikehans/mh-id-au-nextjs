@@ -38,15 +38,16 @@ export default BlogPostPage;
 
 export async function getStaticPaths() {
   dotenv.config();
+  const postsPath = path.join(process.env.DATA_PATH as string, process.env.POSTS_PATH as string);
 
-  const posts = fs.readdirSync("./data/posts");
+  const posts = fs.readdirSync(postsPath);
   const paths = posts.map((post) => {
-    const { data } = matter(fs.readFileSync(path.join("./data/posts", post)));
-    console.log("data", data);
+    const { data } = matter(fs.readFileSync(path.join(postsPath, post)));
+    // console.log("data", data);
     return { params: { slug: data.slug } };
   });
 
-  console.log("getStaticPaths paths", paths);
+  // console.log("getStaticPaths paths", paths);
 
   return {
     paths,
@@ -61,10 +62,13 @@ export interface BlogPostGetStaticPropsProps {
   };
 }
 export async function getStaticProps(props: BlogPostGetStaticPropsProps) {
+  dotenv.config();
+  const postsPath = path.join(process.env.DATA_PATH as string, process.env.POSTS_PATH as string);
+
   // console.log('slug :>> ', props.params.slug);
 
   const markdownWithMetadata = fs.readFileSync(
-    path.join("./data/posts", props.params.slug + ".md"),
+    path.join(postsPath, props.params.slug + ".md"),
     "utf-8"
   );
   // console.log('markdownWithMetadata :>> ', markdownWithMetadata);

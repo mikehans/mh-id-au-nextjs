@@ -25,10 +25,10 @@ function SiteDevelopmentPage(props: any) {
 export default SiteDevelopmentPage;
 
 type logEntry = {
-  data: any,
-  content: string,
-  date: string
-}
+  data: any;
+  content: string;
+  date: string;
+};
 
 function descSort(entry1: logEntry, entry2: logEntry): number {
   if (new Date(entry1.date) < new Date(entry2.date)) {
@@ -42,11 +42,15 @@ function descSort(entry1: logEntry, entry2: logEntry): number {
 
 export async function getStaticProps() {
   dotenv.config();
+  const devlogPath = path.join(
+    process.env.DATA_PATH as string,
+    process.env.DEVLOG_PATH as string
+  );
 
-  const files = fs.readdirSync("./data/site-dev-log");
+  const files = fs.readdirSync(devlogPath);
 
   const fileData = files.map((file) => {
-    const f = fs.readFileSync(path.join("./data/site-dev-log", file));
+    const f = fs.readFileSync(path.join(devlogPath, file));
     const { data, content } = matter(f);
     return { data, content, date: data.date };
   });

@@ -29,13 +29,14 @@ export default ProjectPage;
 
 export async function getStaticPaths() {
   dotenv.config();
+  const projPath = path.join(process.env.DATA_PATH as string, process.env.PROJECTS_PATH as string);
 
-  const projects = fs.readdirSync("./data/projects");
+  const projects = fs.readdirSync(projPath);
   const paths = projects.map((project) => {
     const { data } = matter(
-      fs.readFileSync(path.join("./data/projects", project))
+      fs.readFileSync(path.join(projPath, project))
     );
-    console.log("data", data);
+    // console.log("data", data);
     return { params: { slug: data.slug } };
   });
 
