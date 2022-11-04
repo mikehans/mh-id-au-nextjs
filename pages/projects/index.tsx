@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import LatestItems from "../../components/LatestItems";
 import fs from 'fs';
 import path from 'path';
+import process from 'process';
 import matter from "gray-matter";
 import { ProjectFrontmatter } from "../../types/ProjectInterfaces";
 
@@ -21,12 +22,14 @@ export default ProjectsPage
 
 export async function getStaticProps() {
   dotenv.config();
+  const projPath = path.join(process.env.DATA_PATH as string, process.env.PROJECTS_PATH as string);
 
-  const files = fs.readdirSync("./data/projects");
+  // console.log('projPath :>> ', projPath);
+  const files = fs.readdirSync(projPath);
   // console.log("files", files);
 
   const fileInfo = files.map((file) => {
-    const f = fs.readFileSync(path.join("./data/projects", file));
+    const f = fs.readFileSync(path.join(projPath, file));
     const { data, content } = matter(f);
     return { data, content };
   });
