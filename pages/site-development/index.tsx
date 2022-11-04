@@ -51,7 +51,7 @@ export async function getStaticProps() {
     return { data, content, date: data.date };
   });
 
-  console.log('fileData', fileData)
+  // console.log('fileData', fileData)
 
   return {
     props: {
