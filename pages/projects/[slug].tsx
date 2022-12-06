@@ -19,7 +19,7 @@ function ProjectPage(props: ProjectProps) {
   return (
     <article>
       <h2>{props.frontmatter.title}</h2>
-      <p>{props.frontmatter.description}</p>
+      {/* <p>{props.frontmatter.description}</p> */}
       <p className="md-article">{parse(content)}</p>
     </article>
   );
