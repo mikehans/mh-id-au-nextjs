@@ -27,16 +27,6 @@ export default function Footer() {
         </p>
         <div className={styles.mainFooterContacts}>
           {/* <ContactForm /> */}
-          {/* <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfkT8ht7_bzpinAmq_P7Jfk3UDtIwDhLAbPut57LJtSVIdARQ/viewform?embedded=true"
-            width="500"
-            height="900"
-            frameborder="0"
-            marginheight="0"
-            marginwidth="0"
-          >
-            Loading…
-          </iframe> */}
           <ul className={styles.contactList}>
             <li className={styles.contactListLinkedIn}>
             <FontAwesomeIcon icon={faLinkedin} className={styles.contactListIcon} /> <Link href={linkedinUrl}>{linkedinUrl}</Link>

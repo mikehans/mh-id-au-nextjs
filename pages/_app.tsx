@@ -5,11 +5,13 @@ import Layout from "../components/Layout";
 import {AppContext} from '../context/AppContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const data = useContext(AppContext);
+  const contextData = useContext(AppContext);
+
+  console.log('pageProps', pageProps)
 
   return (
     <>
-      <Layout title={data.title} subtitle={data.subtitle}>
+      <Layout title={contextData.title} subtitle={contextData.subtitle}>
         <Component {...pageProps} />
       </Layout>
     </>
