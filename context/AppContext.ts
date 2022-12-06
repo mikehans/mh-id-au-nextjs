@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 export const AppContext = React.createContext({
     title: "Mike Hansford",
-    subtitle: `Web development`,
+    subtitle: `Web development, C#, Azure`,
     description: `Mike Hansford's software development blog.`,
     author: `Mike Hansford`,
     linkedIn: `linkedin.com/in/mikehansford`,
