@@ -1,6 +1,11 @@
 import React from 'react'
 import dotenv from 'dotenv'
 import LatestItems from "../../components/LatestItems";
+import fs from 'fs';
+import path from 'path';
+import process from 'process';
+import matter from "gray-matter";
+import { ProjectFrontmatter } from "../../types/ProjectInterfaces";
 
 function ProjectsPage({data}: {data: any}) {
   return (
@@ -15,17 +20,23 @@ function ProjectsPage({data}: {data: any}) {
 
 export default ProjectsPage
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   dotenv.config();
+  const projPath = path.join(process.env.DATA_PATH as string, process.env.PROJECTS_PATH as string);
 
-  const url = `${process.env.API_URL}/projects?_sort=published_at:DESC`;
-  const response = await fetch(url);
-  const data = await response.json();
+  // console.log('projPath :>> ', projPath);
+  const files = fs.readdirSync(projPath);
+  // console.log("files", files);
+
+  const fileInfo = files.map((file) => {
+    const f = fs.readFileSync(path.join(projPath, file));
+    const { data, content } = matter(f);
+    return { data, content };
+  });
 
   return {
     props: {
-      data,
-      revalidate: 20
+      data: fileInfo
     }
-  }
+  };
 }

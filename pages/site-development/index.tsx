@@ -1,48 +1,65 @@
 import React from "react";
 import dotenv from "dotenv";
 import dateFormatter from "../../components/utils/dateFormatter";
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import SiteDevLogList from "../../components/SiteDevLogList";
+import { sortByDateDesc } from "../../components/utils/sortAlgos";
 
-function SiteDevelopmentPage({ logs }: { logs: any }) {
+function SiteDevelopmentPage(props: any) {
+  // console.log("props :>> ", props);
   const formatDate = (theDate: string) => {
-    const options = {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    };
-
-    return new Date(theDate).toLocaleDateString(undefined, options);
+    return dateFormatter(theDate, "short");
   };
 
   return (
     <>
       <h2>Site Development Logs</h2>
 
-      {logs.map((log: any) => {
-        return (
-          <article key={log.id}>
-            <h3>{log.title}</h3>
-            <p>{formatDate(log.published_at)}</p>
-            <p>{log.content}</p>
-          </article>
-        );
-      })}
+      <SiteDevLogList data={props.fileData} />
     </>
   );
 }
 
 export default SiteDevelopmentPage;
 
+type logEntry = {
+  data: any;
+  content: string;
+  date: string;
+};
+
+function descSort(entry1: logEntry, entry2: logEntry): number {
+  if (new Date(entry1.date) < new Date(entry2.date)) {
+    return 1;
+  }
+  if (new Date(entry1.date) > new Date(entry2.date)) {
+    return -1;
+  }
+  return 0;
+}
+
 export async function getStaticProps() {
   dotenv.config();
+  const devlogPath = path.join(
+    process.env.DATA_PATH as string,
+    process.env.DEVLOG_PATH as string
+  );
 
-  const url = `${process.env.API_URL}/dev-logs`;
-  const res = await fetch(url);
-  const logs = await res.json();
+  const files = fs.readdirSync(devlogPath);
+
+  const fileData = files.map((file) => {
+    const f = fs.readFileSync(path.join(devlogPath, file));
+    const { data, content } = matter(f);
+    return { data, content, date: data.date };
+  });
+
+  // console.log('fileData', fileData)
 
   return {
     props: {
-      logs,
-    },
-    revalidate: 60,
+      fileData: fileData.sort(descSort)
+    }
   };
 }

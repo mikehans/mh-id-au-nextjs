@@ -1,0 +1,8 @@
+---
+date: "2022-11-09"
+title: "React Context API in NextJS"
+author: "Mike Hansford"
+type: "log"
+publish: true
+---
+I have a React Context created that delivers site data to the whole app. Just to get going, I have hard-coded the values directly into `AppContext.ts`. Now I want to move this data into a separate data file that I can manage.  

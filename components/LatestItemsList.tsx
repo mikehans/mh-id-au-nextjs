@@ -9,7 +9,7 @@ function LatestItemsList({list, path}: {list: any, path: string}) {
         <ul className={styles.cardList}>
         {
             list.map((item: any, idx: any) => (
-                <LatestItem key={idx} {...item} path={path} />
+                <LatestItem key={idx} title={item.data.title} slug={item.data.slug} date={item.data.date} path={path} />
             ))
         }
         </ul>

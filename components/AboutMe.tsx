@@ -6,9 +6,7 @@ function AboutMe(props:any) {
   const [bodyContent, setBodyContent] = useState("");
 
   useEffect(() => {
-    markdownToHtml(props.content).then((response) => {
-      setBodyContent(response.value);
-    });
+    setBodyContent(markdownToHtml(props.content))
   }, [props.content, setBodyContent]);
 
   return (

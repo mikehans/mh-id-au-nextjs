@@ -60,6 +60,10 @@ ul {
   padding-left: 0;
 }
 
+.md-article ul {
+  padding-left: 2em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
