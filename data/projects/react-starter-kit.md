@@ -7,7 +7,7 @@ author: "Mike Hansford"
 type: "project"
 publish: true
 ---
-> EDIT (6 Dec 2022): I no longer think this is a good idea. Instead, Vite gives me everything I was hoping to get with
+> EDIT (6 Dec 2022): I no longer think this is a good idea. Instead, [Vite](https://vitejs.dev) gives me everything I was hoping to get with
 > this project and more. See my post on using [Vite for React projects](/blog/vite-for-react-projects).
 
 *Project Source:* https://github.com/mikehans/ReactStarterKit
