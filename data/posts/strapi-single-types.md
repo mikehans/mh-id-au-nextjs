@@ -14,9 +14,9 @@ tags:
 
 I use Strapi Single Types for individual, one off web pages on my site. They provide a clear mechanism for showing what static pages I have and make editing them easy. So far, all my pages have the same fields and are based on 2 components and 1 relation:
 
-    a Page component
-    an SEO component
-    a menus relation
+* a Page component
+* an SEO component
+* a menus relation
 
 To add a new page, I need to create it in my development environment as a new Single Type, commit the change, push it and wait for Heroku to pick up the change and build the new commit. I use the Content-Types Builder to do this. The Content-Types Builder is not available in production, hence new content types are build in a developer environment.
 

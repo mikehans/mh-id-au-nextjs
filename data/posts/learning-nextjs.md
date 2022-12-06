@@ -51,6 +51,6 @@ NextJS appears to have been built from the ground up with more flexibility in mi
 
 ## Similarities to Sveltekit
 
-Sveltekit is described as NextJS for Svelte. I adopted Sveltekit having only had Gatsby experience. The two were chalk and cheese, largely because of Gatsby's GraphQL data plane and Sveltekit's additional rendering flexibility (like NextJS, Sveltekit supports server side rendering). NextJS and Sveltekit work very similarly and the Sveltekit doco sometimes says that such-and-such a feature is similar to NextJS's such-and-such a feature.
+Sveltekit is described as NextJS for Svelte. I adopted Sveltekit having only had Gatsby experience. The two were chalk and cheese, largely because of Gatsby's GraphQL data plane and Sveltekit's additional rendering flexibility (like NextJS, Sveltekit supports more than just static site generation). NextJS and Sveltekit work very similarly and the Sveltekit doco sometimes says that such-and-such a feature is similar to NextJS's such-and-such a feature.
 
 If you don't know, Svelte is to Sveltekit as React is to NextJS. Svelte and React are the underlying libraries. Sveltekit and NextJS are frameworks built on top of Svelte and React (respectively) for building web applications.

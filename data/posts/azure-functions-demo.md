@@ -18,7 +18,9 @@ The prerequisites stipulate using Azure Functions Core Tools v 3.x and .NET Core
 If you don't notice this and build your function, you will get the following error in your terminal:
 
 ```
-System.Private.CoreLib: Could not load type 'System.Diagnostics.DebuggerStepThroughAttribute' from assembly 'System.Runtime, Version=4.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. Value cannot be null. (Parameter 'provider')
+System.Private.CoreLib: Could not load type 'System.Diagnostics.DebuggerStepThroughAttribute' from assembly 
+'System.Runtime, Version=4.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'. 
+Value cannot be null. (Parameter 'provider')
 ```
 
 ## Fix

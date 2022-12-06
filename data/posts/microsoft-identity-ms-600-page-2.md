@@ -14,11 +14,13 @@ tags:
 [Return to Table of Contents for the Microsoft Identity (MS-600) posts](microsoft-identity-ms-600)
 
 This is referring to the process of creating the application object in AAD.
-![Azure Active Directory App Registrations page](./aad-app-registrations.png)
+
+![Azure Active Directory App Registrations page](/images/aad-app-registrations.png)
 
 ### Determine the supported account type
 This is talking specifically about the account type for the application object you are creating.
-![Azure Active Directory new registration showing account types](./aad-new-registration.png)
+
+![Azure Active Directory new registration showing account types](/images/aad-new-registration.png)
 
 The key here is what do each of the four options under "Supported account types" grant / prohibit. Clicking on the "Help me choose" link is helpful to understanding these.
 * Accounts in this organisational directory only (single tenant)
@@ -47,7 +49,8 @@ I've noticed that only Microsoft accounts have been addressed here. How do you a
 ### Select authentication and client credentials for app type and authentication flow
 #### App types
 OK, so here I'm a little confused. Are "app types" the items that appear in the dropdown list under the Redirect UI
-![Redirect URI dropdown list opened](redirect-uri-dropdown.png)
+
+![Redirect URI dropdown list opened](/images/redirect-uri-dropdown.png)
 
 or is it the list of application types listed under the <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-create-new-tenant" target="_blank" rel="noreferrer">Quickstarts</a> section of the MS Doc for Identity, being
 * Single Page Apps
