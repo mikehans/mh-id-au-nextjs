@@ -34,6 +34,7 @@ Here's the result of me running the create command, then listing directory conte
 ![create result](/images/vite-react-gci.png)
 
 Then run ```npm install```. This adds only 86 packages. That beats Create React App hands down. Unlike CRA, only a mere fraction of the internet gets downloaded! 
+
 ![npm install result](/images/vite-react-npm-i.png)
 
 Total install size is a shade under 100MB (as of 6 Dec 2022)
