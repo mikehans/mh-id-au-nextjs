@@ -1,5 +1,5 @@
 ---
-date: "2023-03-22"
+date: "2023-04-03"
 slug: "azure-functions"
 title: "Azure Functions Exercises"
 description: 'Learning exercises in Azure Functions'
