@@ -44,7 +44,7 @@ If only there was a way I could automate deployments from Github... and even cre
 #### GetPostsData.cs
 GetPostsData.cs is an HTTP triggered function that obtains the posts data and writes it to blob storage. In this simple instance, I hard-coded the URL into the function but in a more useful function it would be passed in as a parameter or be obtained from app settings. It feels a little odd declaring the output binding as a parameter. It's a little like an output parameter, which always feels a little odd to me too. The ```{rand-guid}``` function generates a GUID. In this case, I'm assigning it as the filename for the output blob.
 
-```C#
+```Csharp
 [FunctionName("GetPostsData")]
     public static async Task<IActionResult> RunAsync(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req, 
@@ -64,7 +64,7 @@ Then each post is written to the queue in the foreach loop (lines 32 - 36).
 
 Note that for this demo app, I'm not removing the blob. Depending on the need for data preservation, I'd have to decide to either keep or delete it.
 
-```C#
+```Csharp
 [FunctionName("ParsePostsData")]
     public static async Task RunAsync(
         [BlobTrigger("posts-data/{name}")] Stream postsBlob,
@@ -80,7 +80,7 @@ In true demoware style, I have hard-coded the database name (usefully names "Stu
 
 The class ```CosmosPost``` is slightly different from ```Post```. The Id field of the Post will be put onto the PostId property of the ```CosmosPost``` and a new GUID will be created as the Id of the ```CosmosPost```. I thought I could use the Id property from ```Post``` but Cosmos kept throwing an error. It's likely this comes from my lack of knowledge of Cosmos DB and is a question to be answered later. This object is then written to the output binding.
 
-```C#
+```Csharp
 [FunctionName("ParseQueueToCosmosDb")]
     public static void RunAsync(
         [QueueTrigger("posts-queue")] Post myQueueItem,
@@ -97,7 +97,7 @@ The class ```CosmosPost``` is slightly different from ```Post```. The Id field o
 #### GetPostByPostId.cs
 GetPostByPostId.cs is an HTTP triggered function. It takes an Id and searches Cosmos DB through an input binding for a record with a matching PostId attribute. I am retrieving a ```List<CosmosPost>``` as if I run the functions again, the posts will be added a second time, so there will be 2 results for a search for the PostId. This is a demoware thing - in an operational system, I should be ensuring that the PostId is unique. The PostId should be the Id property in Cosmos DB but I am yet to learn to model data in Cosmos DB. Allowing for multiples to be retrieved just gets me around a potential problem for now.
 
-```C#
+```Csharp
  [FunctionName("GetPostByPostId")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
