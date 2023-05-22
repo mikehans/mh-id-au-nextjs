@@ -101,6 +101,7 @@ _Bounded staleness_ consistency:
 
 _Session_ consistency:
 * within a single client session, reads are guaranteed to read the most recent write
+    * all client instances sharing a session token will be consistent
 * generally suits the needs of applications written to operate in the context of a user
 * provides write latencies, availability and read throughput comparable to eventual consistency
 
@@ -124,14 +125,73 @@ In additon:
 * the documentation states that for all consistency levels weaker than Strong, writes are replicated to a minimum of 3 replicas in the local region, with asynchronous replication to other regions
 * the RU cost of reads in Stong and Bounded Staleness are twice that of the other consistency levels owing to how consistency guarantees are made
 
-
 ## SDK requirements
 ### Core SDK classes
+Know how to use the following:
+* CosmosClient
+    * CosmosClientOptions
+* Database
+* Container
+* QueryDefinition
+* FeedIterator<T>
+
+In the exam readiness videos, they say over and over again that this is not a syntax exam. So, there's no need to recall in perfect detail every nuance of them. However, it is important to understand the relationships between the key classes, what they do and the key methods and properties of them.
+
+My Github contains a project containing [a set of C# exercises](https://github.com/mikehans/az-cosmosdb-sdk-exercises) that helped me to understand the SDK.
+
+#### SDK exercises
+The project connects to an existing CosmosDB database, bulk uploads some data, modifies a record, deletes a record and queries the database. 
+
+I used a bulk upload rather than a single create item operation as a bulk upload essentially is essentially a group of individual create operations, executed as a list of Tasks. Each task is a call to ```Container.CreateItemAsync()```, which is the way you write a single record. The ```CosmosClient``` also requires some configuration with an object of type ```CosmosClientOptions```.
+
+The demo project is a console application. I have used dependency injection to create a singleton ```CosmosClient```. I have provided two options for constructing it: one using a connection string; the other using a URI and a ```DefaultAzureCredential()```.  Both options take as their final parameter a ```new CosmosClientOptions()``` instance, where the client is configured for bulk uploads.
+
+Below are the two variations I have used for configuring the ```CosmosClient```.
+```csharp
+    //   1. initialise with a connection string
+    services.AddSingleton(
+                s => new CosmosClient(
+                        ctx.Configuration["CosmosDbConnectionString"],
+                        clientOptions: new CosmosClientOptions() { AllowBulkExecution = true }));
+```
+
+```csharp
+    //   2. initialise with DefaultAzureCredential - recommended in docs
+    services.AddSingleton(
+        s => new CosmosClient(
+                "https://product-catalogue-db.documents.azure.com:443/",
+                tokenCredential: new DefaultAzureCredential(),
+                clientOptions: new CosmosClientOptions() { AllowBulkExecution = true }));
+```
+
+There was a problem with ```DbManagement.EnsureDbCreated()``` and ```DbManagement.EnsureContainersCreated()``` methods. Assuming that the database / containers exist, everything is fine (the ```Create[Database|Container]IfNotExistsAsync()``` methods are essentially no-ops in this case) however if the methods have to create an object, they fail. I'm not entirely sure why. I think I found a suggestion that this was an improper use of the SDK but I can't find the documentation around this now. [Documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-dotnet-create-container) clearly says it is a supported operation.
+
+I have, however left these methods in the code for reference. They are just not being executed.
 
 ### Core operations (add, query, update, delete)
+#### Add
+```csharp
+    container.CreateItemAsync(item, new PartitionKey(item.id))
+```
+
+In the demo project, I am reading a collection of categories in from a JSON file, parsing them as a collection of ```CategoryDTO``` objects, creating a new item from each one in a Task, then executing all the tasks at once with ```Task.WhenAll()```.
+
+In the code snippet above, ```item``` represents a ```CategoryDTO``` object. I also need to new up a ```PartitionKey``` object and pass in the value being used. My container design in this case puts every category in its own logical partition.
+
+#### Query
+
+
+#### Update
+
+
+#### Delete
+
 
 ### Change feed
+* very important
 
 ### Stored procedures
+* no mention of them in the [Exam review video](https://learn.microsoft.com/en-us/shows/exam-readiness-zone/preparing-for-az-204-develop-for-azure-storage-segment-2-of-5) but it's covered in the MS Learn content
 
 ### User-defined functions
+* no mention of them in the [Exam review video](https://learn.microsoft.com/en-us/shows/exam-readiness-zone/preparing-for-az-204-develop-for-azure-storage-segment-2-of-5) but it's covered in the MS Learn content
