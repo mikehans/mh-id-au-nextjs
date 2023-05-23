@@ -13,7 +13,7 @@ tags:
 
 Cosmos DB is one of the topics for the AZ-204 domain "Develop for Azure Storage". This article unpacks some of the lessons from exploring the scope of this requirement with respect to the SDK. 
 
-As of the time of writing, I am yet to attempt the exam.
+As of the time of writing, I am yet to attempt the exam. The current version of the exam is the April 2023 update.
 
 ## Core SDK classes
 The following classes appear to be the key classes to understand:
@@ -169,3 +169,18 @@ Deleting an item is done with the ```DeleteItemAsync<T>(string id, PartitionKey)
         new PartitionKey(result.id)
     );
 ```
+
+## Wrapping up
+This article is constrained to developing an understanding of the SDK operations required for the AZ-204 exam.
+
+Pay attention to the exam readiness videos. They reminded me that it's no only the SDK that matters. For Cosmos DB, you also need to understand topics related to:
+* role-based access control (RBAC)
+* consistency levels
+* the change feed
+* serverless vs provisioned throughput
+* database scaling
+* geo-replication
+* setting time-to-live
+* indexing policy
+
+Interestingly, there appears to be no more mention of stored procedures, triggers or user-defined functions. Have they been dropped from the exam?
