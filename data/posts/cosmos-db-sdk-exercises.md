@@ -179,13 +179,96 @@ In the demo project, I am reading a collection of categories in from a JSON file
 In the code snippet above, ```item``` represents a ```CategoryDTO``` object. I also need to new up a ```PartitionKey``` object and pass in the value being used. My container design in this case puts every category in its own logical partition.
 
 #### Query
+With queries, there are two general options:
+1. ```GetItemQueryIterator<T>```, and
+1. ```GetItemLinqQueryable<T>```
 
+The examples below are essentially taken from [MS Learn - Query items in Azure Cosmos DB for NoSQL using .NET](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-dotnet-query-items)
+
+
+In these first two examples, I am calling ```GetItemQueryIterator<T>```. The first example passes in a string, being the query. Using this form of the method, only canned queries should be used - no parameters.
+```csharp
+    using FeedIterator<CategoryDTO> feed =
+        container.GetItemQueryIterator<CategoryDTO>(
+            queryText: "SELECT * FROM categories"
+        );
+
+    while (feed.HasMoreResults)
+    {
+        FeedResponse<CategoryDTO> results = await feed.ReadNextAsync();
+
+        foreach (var result in results)
+        {
+            logger.Information($"Found result: \t {result.name}");
+        }
+    }
+```
+
+This second example uses an overload of ```GetItemQueryIterator<T>``` that takes a ```QueryDefinition``` object. Note how we can pass in a parameter safely.
+```csharp
+    var query = new QueryDefinition(
+            query: "SELECT * FROM categories c WHERE c.name = @categoryName"
+        ).WithParameter("@categoryName", "Brakes");
+
+    using var filteredFeed = container.GetItemQueryIterator<CategoryDTO>(
+                queryDefinition: query);
+
+    while (filteredFeed.HasMoreResults)
+    {
+       // do stuff...
+    }
+```
+The third example uses ```GetItemLinqQueryable<T>``` to construct an IQueryable from a LINQ query. This example only uses a single filter but the example on MS Learn demonstrates using several filters.
+```csharp
+    // GetItemLinqQueryable<T>
+
+    IOrderedQueryable<CategoryDTO> queryable = container.GetItemLinqQueryable<CategoryDTO>();
+
+    var matches = queryable.Where(c => c.parent.Id == "cat2");
+
+    using FeedIterator<CategoryDTO> linqFeed = matches.ToFeedIterator();
+
+    while (linqFeed.HasMoreResults)
+    {
+        // do stuff...
+    }
+```
 
 #### Update
+There are two methods that can be used to update a document:
+1. ```UpsertItemAsync(objectToUpsert, PartitionKey)```
+1. ```ReplaceItemAsync<T>(T, string id, PartitionKey)```
 
+Both methods take a complete object that you want to insert, not just the updated fields. 
+
+You'll need a reference to the object you want to update. In the demo project I've simply run a query, updated a field and written it back.
+
+Interestingly, I had assumed that the RU cost of an Upsert operation would be greater than a Replace operation, however both cases returned an RU cost of 10.67 for an update to an existing item. You'll see the RU cost when you run the demo project. So the choice of which method to use comes down to what action you want to occur if the object you're updating doesn't actually exist in the database - insert it as a new item or fail the operation.
+
+Each method call is shown below. the ```updatedCategory``` variable is the ```CategoryDTO``` object you will put back into the database.
+
+```csharp
+    ItemResponse<CategoryDTO> upsertItem = await container.UpsertItemAsync(
+        updatedCategory, 
+        new PartitionKey(updatedCategory.id)
+    );
+
+    ItemResponse<CategoryDTO> response = await container.ReplaceItemAsync<CategoryDTO>(
+        updatedCategory, 
+        result.id, 
+        new PartitionKey(result.id)
+    );
+```
 
 #### Delete
+Deleting an item is done with the ```DeleteItemAsync<T>(string id, PartitionKey)``` method. You delete an item by passing in the ID of the item and its partition key. These two properties are the standard two properties you need to uniquely identify an item in a Cosmos DB Core API database.
 
+```csharp
+    ItemResponse<CategoryDTO> response = await container.DeleteItemAsync<CategoryDTO>(
+        result.id, 
+        new PartitionKey(result.id)
+    );
+```
 
 ### Change feed
 * very important
